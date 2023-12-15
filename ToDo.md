@@ -48,4 +48,20 @@ ALTER TABLE todos DROP COLUMN priority;
 
 ## categories table
 Door de gegeven teks kunnen we afleiden dat er een **one to many** relatie bestaat tussen<br>
-todos en catogories. Hiervoor ga ik een apparte tabel 'categories' aanmaken.
+todos en catogories. Hiervoor ga ik een apparte tabel 'categories' aanmaken. Om er voor te zorgen<br>
+dat alle todos verwijdert worden bij verwijdering van category, dan voeg ik nog ON DELETE CASCADE toe.
+
+**De nodige querries**
+```sql
+CREATE TABLE catogories(
+	id INT AUTO_INCREMENT,
+	name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE todos ADD category_id INT;
+ALTER TABLE todos ADD FOREIGN KEY (category_id) REFERENCES catogories(id) ON DELETE CASCADE;
+
+```
+
+
