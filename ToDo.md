@@ -17,10 +17,11 @@ CREATE DATABASE ToDo;
 | created_at | TIMESTAMP     | exacte moment van aanmaken, can automatisch met current_timestamp      |
 | priority   | INT           | getallen hebben een makkelijke prioriteit                              |
 
+
 **Aanmaken tabel in SQL**
 ```sql
 CREATE TABLE todos(
-	id INT AUTO_INCREMENT,
+    id INT AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     completed BOOLEAN DEFAULT 0 NOT NULL,
     deadline DATETIME,
@@ -30,3 +31,14 @@ CREATE TABLE todos(
     );
 ```
 
+
+**Extra kolom notifications**
+```sql
+ALTER TABLE todos ADD notifications BOOLEAN DEFAULT 1 NOT NULL;
+```
+
+
+**Extra kolom voor optionele kleur**
+```sql
+ALTER TABLE todos ADD color VARCHAR(255);
+```
