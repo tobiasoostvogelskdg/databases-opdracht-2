@@ -2,5 +2,5 @@
 
 Hieronder vind je de links naar de files met mijn oplossingen voor database opdrachten deel 2.
 
-[Oplossing Todo app](ToDo.md)
+[Oplossing Todo app](ToDo.md)<br>
 [Oplossing Streaming app](Streaming.md)
