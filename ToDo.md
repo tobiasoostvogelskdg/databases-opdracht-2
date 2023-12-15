@@ -150,3 +150,33 @@ VALUES
 
 SELECT * FROM todo_has_subs;
 ```
+
+**Haal alle subscribers op voor een todo (Email van subscriber, Titel van todo)**
+```sql
+SELECT subscribers.mail, todos.name AS 'Titel todo'
+FROM subscribers
+INNER JOIN todo_has_subs ON subscribers.id = todo_has_subs.subscriber_id
+INNER JOIN todos ON todos.id = todo_has_subs.subscriber_id
+```
+
+**Haal alle subscribers op met hun todo. Als een subscriber geen todo heeft moet deze ook in het resultaat zitten**
+```sql
+SELECT subscribers.mail AS 'SUB', todos.name AS 'todo'
+FROM subscribers
+LEFT JOIN todo_has_subs ON subscribers.id = todo_has_subs.subscriber_id
+LEFT JOIN todos ON todos.id = todo_has_subs.id;
+```
+
+**Haal todo's en hun categorie op.**
+```sql
+SELECT todos.name AS 'todo', catogories.name as 'cat'
+FROM todos
+INNER JOIN catogories ON todos.category_id = catogories.id;
+```
+
+**Haal alle todo's op ongeacht of ze een categorie hebben of niet. (Dan mag er NULL komen te staan)**
+```sql
+SELECT todos.name AS 'todo', catogories.name AS 'cat'
+FROM todos
+LEFT JOIN catogories ON todos.category_id = catogories.id;	
+```
