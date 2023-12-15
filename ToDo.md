@@ -51,7 +51,7 @@ Door de gegeven tekst kunnen we afleiden dat er een **one to many** relatie best
 todos en catogories. Hiervoor ga ik een apparte tabel 'categories' aanmaken. Om er voor te zorgen<br>
 dat alle todos verwijdert worden bij verwijdering van category, dan voeg ik nog ON DELETE CASCADE toe.
 
-**De nodige querries**
+**De nodige queries**
 ```sql
 CREATE TABLE catogories(
 	id INT AUTO_INCREMENT,
@@ -87,7 +87,7 @@ bestaan. Als ik hier een ON DELETE RESTRICT zou toevoegen kan ik alleen mensen z
 | todo_id(fk)| INT           | verwijzing naar id in todos                                          |
  
 
-**De nodige querries**
+**De nodige queries**
 ```sql
 CREATE TABLE subscribers(
 	id INT AUTO_INCREMENT,
@@ -105,4 +105,48 @@ CREATE TABLE todo_has_subs(
     FOREIGN KEY (subscriber_id) REFERENCES subscribers(id),
     FOREIGN KEY (todo_id) REFERENCES todos(id)
 );
+```
+
+## Bevragings queries
+
+**Toegevoegde data**
+```sql
+INSERT INTO catogories(name)
+VALUES
+('ontspanning'),
+('schoolwerk'),
+('werk'),
+('sport');
+
+SELECT * FROM catogories;
+
+INSERT INTO subscribers(mail, phone, preference)
+VALUES
+('test1@gmail.com', '0123', 'mail'),
+('test2@gmail.com', '1234', 'mail & phone'),
+('test3@gmail.com', '2345', 'mail & phone'),
+('test4@gmail.com','3456', 'phone');
+
+SELECT * FROM subscribers;
+
+INSERT INTO todos(name, completed, deadline, notifications, color, category_id)
+VALUES
+('Web Dev', 0, '2024-01-16 16:00:00', 1, 'red', 2),
+('fietsen', 1, '2023-12-14 10:30:00', 0, 'pink', 4),
+('colruyt', 1, '2023-07-16 07:00:00', 1, 'blue', 3),
+('netflix', 0, '2023-12-31 22:00:00', 1, 'green', 1);
+
+SELECT * FROM todos;
+
+INSERT INTO todo_has_subs(subscriber_id, todo_id)
+VALUES
+(1 , 1),
+(2, 1),
+(2, 2),
+(3, 3),
+(4, 2),
+(2, 4),
+(3, 1);
+
+SELECT * FROM todo_has_subs;
 ```
