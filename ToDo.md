@@ -11,7 +11,7 @@ CREATE DATABASE ToDo;
 **Kolomen van tabel + uitleg**
 | Tag        | Datatype      | Uitleg                                                                 |
 | :---       | :------       | :----                                                                  |
-| id         | INT           | id kunnen we definieren met een int en automatisch omhoog laten gaan   | 
+| id    (pk) | INT           | id kunnen we definieren met een int en automatisch omhoog laten gaan   | 
 | name       | VARCHAR(255)  | naam bestaat uit letters                                               |
 | completed  | BOOLEAN       | completed is waar of nietwaar, perfect voor een boolean                |
 | deadline   | DATETIME      | moet een datum weergeven eventueel zels met een uur, kan ook NULL zijn |
@@ -47,7 +47,7 @@ ALTER TABLE todos DROP COLUMN priority;
 ```
 
 ## categories table
-Door de gegeven teks kunnen we afleiden dat er een **one to many** relatie bestaat tussen<br>
+Door de gegeven tekst kunnen we afleiden dat er een **one to many** relatie bestaat tussen<br>
 todos en catogories. Hiervoor ga ik een apparte tabel 'categories' aanmaken. Om er voor te zorgen<br>
 dat alle todos verwijdert worden bij verwijdering van category, dan voeg ik nog ON DELETE CASCADE toe.
 
@@ -63,5 +63,28 @@ ALTER TABLE todos ADD category_id INT;
 ALTER TABLE todos ADD FOREIGN KEY (category_id) REFERENCES catogories(id) ON DELETE CASCADE;
 
 ```
+
+## subscribers table
+Door de gegeven tekst kunnen we afleiden dat er een **many to many** relatie bestaat tussen<br>
+todos en subscribers. Hiervoor moeten er dus 2 tabellen gemaakt worden. Als eerste de tabel subscribers<br>
+met onderstaande structuur. en een tabel todo_has_subs waar een PK id is, en 2 foreign keys, namelijk de <br>
+primary keys van subscribers en van todos. Wanneer een subscriber verwijdert word, dan moet de data blijven<br>
+bestaan. Als ik hier een ON DELETE RESTRICT zou toevoegen kan ik alleen mensen zonder todos verwijderen.
+
+**Tabel subscribers**
+| Tag        | Datatype      | Uitleg                                                               |
+| :---       | :------       | :----                                                                |
+| id    (pk) | INT           | id kunnen we definieren met een int en automatisch omhoog laten gaan |
+| mail       | VARCHAR(255)  | Mail bestaat uit tekst                                               |
+| phone      | VARCHAR(255)  | Afhankelijk van format kunnen er symbolen etc instaan                |
+| preference | VARCHAR(255)  | Aangeven van mail of telefoon of beide via tekst format              |
+
+**Tabel todo has subs**
+| Tag        | Datatype      | Uitleg                                                               |
+| :---       | :------       | :----                                                                |
+| id     (pk)| INT           | id kunnen we definieren met een int en automatisch omhoog laten gaan |
+| sub_id (fk)| INT           | verwijzing naar id in subscribers                                    |
+| todo_id(fk)| INT           | verwijzing naar id in todos                                          |
+ 
 
 
