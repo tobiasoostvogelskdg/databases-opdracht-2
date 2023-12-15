@@ -11,7 +11,7 @@ CREATE DATABASE ToDo;
 **Kolomen van tabel + uitleg**
 | Tag        | Datatype      | Uitleg                                                                 |
 | :---       | :------       | :----                                                                  |
-| id    (pk) | INT           | id kunnen we definieren met een int en automatisch omhoog laten gaan   | 
+| id     (pk)| INT           | id kunnen we definieren met een int en automatisch omhoog laten gaan   | 
 | name       | VARCHAR(255)  | naam bestaat uit letters                                               |
 | completed  | BOOLEAN       | completed is waar of nietwaar, perfect voor een boolean                |
 | deadline   | DATETIME      | moet een datum weergeven eventueel zels met een uur, kan ook NULL zijn |
@@ -87,4 +87,22 @@ bestaan. Als ik hier een ON DELETE RESTRICT zou toevoegen kan ik alleen mensen z
 | todo_id(fk)| INT           | verwijzing naar id in todos                                          |
  
 
+**De nodige querries**
+```sql
+CREATE TABLE subscribers(
+	id INT AUTO_INCREMENT,
+    mail VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL,
+    preference VARCHAR(255) NOT NULL,
+	PRIMARY KEY (id)
+);
 
+CREATE TABLE todo_has_subs(
+	id INT AUTO_INCREMENT,
+    subscriber_id INT NOT NULL,
+    todo_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (subscriber_id) REFERENCES subscribers(id),
+    FOREIGN KEY (todo_id) REFERENCES todos(id)
+);
+```
