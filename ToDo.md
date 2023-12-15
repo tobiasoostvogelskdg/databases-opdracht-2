@@ -180,3 +180,5 @@ SELECT todos.name AS 'todo', catogories.name AS 'cat'
 FROM todos
 LEFT JOIN catogories ON todos.category_id = catogories.id;	
 ```
+
+*disclaimer, ik heb nog een beetje data gewijzigt om goed het resultaat van de joins te kunnen zien
