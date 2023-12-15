@@ -7,6 +7,7 @@ Hieronder vind je al mijn oplossing op de vooropgestelde vragen.
 CREATE DATABASE ToDo;
 ```
 
+## todos tabel
 **Kolomen van tabel + uitleg**
 | Tag        | Datatype      | Uitleg                                                                 |
 | :---       | :------       | :----                                                                  |
@@ -16,7 +17,6 @@ CREATE DATABASE ToDo;
 | deadline   | DATETIME      | moet een datum weergeven eventueel zels met een uur, kan ook NULL zijn |
 | created_at | TIMESTAMP     | exacte moment van aanmaken, can automatisch met current_timestamp      |
 | priority   | INT           | getallen hebben een makkelijke prioriteit                              |
-
 
 **Aanmaken tabel in SQL**
 ```sql
@@ -31,14 +31,21 @@ CREATE TABLE todos(
     );
 ```
 
-
 **Extra kolom notifications**
 ```sql
 ALTER TABLE todos ADD notifications BOOLEAN DEFAULT 1 NOT NULL;
 ```
 
-
 **Extra kolom voor optionele kleur**
 ```sql
 ALTER TABLE todos ADD color VARCHAR(255);
 ```
+
+**Prioriteitskolom verwijderen**
+```sql
+ALTER TABLE todos DROP COLUMN priority;
+```
+
+## categories table
+Door de gegeven teks kunnen we afleiden dat er een **one to many** relatie bestaat tussen<br>
+todos en catogories. Hiervoor ga ik een apparte tabel 'categories' aanmaken.
