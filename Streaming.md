@@ -52,11 +52,6 @@ CREATE TABLE series(
     episode_length INT DEFAULT 60 NOT NULL,
     PRIMARY KEY (id)
 );
-
-ALTER TABLE series ADD COLUMN rating_id INT NOT NULL;
-
-ALTER TABLE series
-ADD FOREIGN KEY (rating_id) REFERENCES ratings(id) ON DELETE RESTRICT;
 ```
 
 
@@ -99,6 +94,10 @@ CREATE TABLE ratings(
     rating DECIMAL(2,1) NOT NULL,
     PRIMARY KEY (id)
 );
+ALTER TABLE ratings ADD COLUMN serie_id INT NOT NULL;
+
+ALTER TABLE ratings
+ADD FOREIGN KEY (serie_id) REFERENCES series(id) ON DELETE RESTRICT;
 ```
 
 ## Extra user gedeelte
