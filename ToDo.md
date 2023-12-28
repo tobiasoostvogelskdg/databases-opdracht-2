@@ -164,7 +164,7 @@ INNER JOIN todos ON todos.id = todo_has_subs.todo_id;
 SELECT subscribers.mail AS 'SUB', todos.name AS 'todo'
 FROM subscribers
 LEFT JOIN todo_has_subs ON subscribers.id = todo_has_subs.subscriber_id
-LEFT JOIN todos ON todos.id = todo_has_subs.id;
+LEFT JOIN todos ON todos.id = todo_has_subs.todo_id;
 ```
 
 **Haal todo's en hun categorie op.**
