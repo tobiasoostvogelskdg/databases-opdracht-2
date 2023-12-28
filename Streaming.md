@@ -40,7 +40,6 @@ tabel gemaakt zal moeten worden namelijk service_has_serie met 2 foreign keys.
 | seasons        | INT                | aantal seizoenen weergegeven als getal                               |
 | episodes       | INT                | aantal episodes weergegeven als getal                                |
 | episode_length | INT                | gemiddelde lengte van episode is een getal                           |
-| streaming_id   | INT                | Link naar een streamingsdienst id                                    |
 
 **sql om dit aan te maken**
 ```sql
