@@ -156,7 +156,7 @@ SELECT * FROM todo_has_subs;
 SELECT subscribers.mail, todos.name AS 'Titel todo'
 FROM subscribers
 INNER JOIN todo_has_subs ON subscribers.id = todo_has_subs.subscriber_id
-INNER JOIN todos ON todos.id = todo_has_subs.subscriber_id
+INNER JOIN todos ON todos.id = todo_has_subs.todo_id;
 ```
 
 **Haal alle subscribers op met hun todo. Als een subscriber geen todo heeft moet deze ook in het resultaat zitten**
